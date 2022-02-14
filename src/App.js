@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 function App() {
+  const [antic, setAntic] = useState(0);
+  const [operacio, setOperacio] = useState("");
+  const [novaEntrada, setNovaEntrada] = useState(false);
+  const [display, setDisplay] = useState(0);
+  const entraNumero = (numero) => {
+    if (novaEntrada) setDisplay(numero);
+    else setDisplay(display * 10 + numero);
+    setNovaEntrada(false);
+  };
+
+  const entraOperacio = (operacio) => {
+    setNovaEntrada(true);
+    setAntic(display);
+    if (novaEntrada) calcular();
+    setOperacio(operacio);
+  };
+
+  const calcular = () => {
+    if (operacio === "+") setDisplay(antic + display);
+    if (operacio === "-") setDisplay(antic - display);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Calculadora">
+      <div className="Display">{display}</div>
+      <div className="Numeros">
+        {numeros.map((numero) => (
+          <button onClick={() => entraNumero(numero)}>{numero}</button>
+        ))}
+      </div>
+      <button onClick={() => entraOperacio("+")}>+</button>
+      <button onClick={() => entraOperacio("-")}>-</button>
+      <br />
+
+      <button onClick={calcular}>=</button>
     </div>
   );
 }
