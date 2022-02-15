@@ -33,12 +33,13 @@ function App() {
         {numeros.map((numero) => (
           <button onClick={() => entraNumero(numero)}>{numero}</button>
         ))}
+        <button onClick={() => entraOperacio("+")}>+</button>
+        <button onClick={() => entraOperacio("-")}>-</button>
       </div>
-      <button onClick={() => entraOperacio("+")}>+</button>
-      <button onClick={() => entraOperacio("-")}>-</button>
       <br />
-
-      <button onClick={calcular}>=</button>
+      <div className="Resultat">
+        <button onClick={calcular}>=</button>
+      </div>
     </div>
   );
 }
