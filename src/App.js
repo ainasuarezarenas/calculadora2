@@ -26,6 +26,11 @@ function App() {
     if (operacio === "-") setDisplay(antic - display);
   };
 
+  const clear = () => {
+    setOperacio("");
+    setDisplay(0);
+  };
+
   return (
     <div className="Calculadora">
       <div className="Display">{display}</div>
@@ -39,6 +44,7 @@ function App() {
       <br />
       <div className="Resultat">
         <button onClick={calcular}>=</button>
+        <button onClick={clear}>C</button>
       </div>
     </div>
   );
